@@ -4,6 +4,38 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
 
 
 class Dishdetail extends Component {
+
+  renderComments(comments) {
+          if (comments == null) {
+              return (<div></div>)
+          }
+
+          const cmnts=comments.map(comment=>{
+            return (
+              <li key={comment.id}>
+              <p>{comment.comment}</p>
+              <p>-- {comment.author},
+              &nbsp;
+              { new Intl.DateTimeFormat('en-Us',{
+                year:'numeric',
+                month:'long',
+                day:'2-digit'
+
+              }).format(new Date(comment.date))}
+             </p>
+             </li>
+            )
+          })
+          return (
+            <div className='col-12 col-md-5 m-1'>
+            <h4>comments</h4>
+            <ul className='list-unstyled'>
+                  {cmnts}
+            </ul>
+            </div>
+          )}
+
+
   renderDish(dish) {
          if (dish != null) {
              return (
@@ -23,6 +55,7 @@ class Dishdetail extends Component {
          }
      }
 
+
      render() {
          const dish = this.props.dish
          if (dish == null) {
@@ -32,7 +65,7 @@ class Dishdetail extends Component {
          return (
              <div className='row'>
                  {dishItem}
-                
+
              </div>
          )
      }
