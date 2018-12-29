@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
-import {Navbar,NavbarBrand} from 'reactstrap';
-import Menu from './components/MenuComponent';
-import { DISHES } from './shared/dishes';
-import DishDetail from './components/DishdetailComponent';
-import './App.css';
+import { Navbar, NavbarBrand } from 'reactstrap';
+import Menu from './MenuComponent';
+import DishDetail from './DishdetailComponent';
+import { DISHES } from '../shared/dishes';
 
-class App extends Component {
+class Main extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      dishes: DISHES
+        dishes: DISHES,
+        selectedDish: null
     };
   }
-  render() {
-    return (
-      <div className="App">
-        <Navbar  dark color="primary">
-        <div className="container">
-        <NavbarBrand href="/">Ristorante con fusion</NavbarBrand>
-        </div>
-        </Navbar>
-         <Menu dishes={this.state.dishes} />
-      </div>
-    );
-  }
-}
+  onDishSelect(dishId) {
+      this.setState({ selectedDish: dishId});
+    }
 
-export default App;
+
+    render() {
+        return (
+          <div>
+            <Navbar dark color="primary">
+              <div className="container">
+                <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+              </div>
+            </Navbar>
+            <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
+            <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+          </div>
+        );
+      }
+    }
+
+export default Main;
