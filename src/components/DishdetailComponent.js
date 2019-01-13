@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {Control, LocalForm, Errors } from 'react-redux-form';
 
 
+
      function RenderDish({dish}){
     	console.log("DishDetail Component render is invoked");
     	if(dish!= null){
