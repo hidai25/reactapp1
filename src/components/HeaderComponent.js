@@ -63,7 +63,7 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                             </NavItem>
-</Nav>
+                              </Nav>
                             <Nav className="ml-auto" navbar>
                              <NavItem>
                                <Button outline onClick={this.toggleModal}>
